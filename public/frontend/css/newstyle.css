@@ -1,0 +1,342 @@
+.form-card {
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    max-width: 500px;
+    margin: 2rem auto;
+}
+.text-16 {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 21px;
+    margin: 0;
+    font-weight: bold;
+}
+/* Nav Pills - Toggle Buttons */
+.nav-pills {
+    justify-content: center;
+    width: max-content;
+    /*margin: 0 auto;*/
+    margin-top: 1rem;
+}
+
+.nav-pills .nav-item {
+    flex: 1;
+}
+
+.nav-pills .nav-link {
+    color: #666;
+    text-align: center;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+    background-color: #252525;
+    margin: 0px 5px;
+    font-weight: bold;
+}
+
+/* Active Tab */
+.nav-pills .nav-link.active {
+    background-color: #444;
+    color: #fff;
+}
+
+/* Hover Effect */
+.nav-pills .nav-link:hover {
+    color: #fff;
+}
+/* End*/
+.gender-nav-pills {
+    justify-content: center;
+    width: max-content;
+    margin-top: 0.5rem;
+}
+
+.gender-nav-pills .nav-item {
+    flex: 1;
+}
+
+.gender-nav-pills .nav-link {
+    color: #666;
+    text-align: center;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+    background-color: #252525;
+    margin: 0px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Active Tab */
+.gender-nav-pills .nav-link.active {
+    background-color: #444;
+    color: #fff;
+}
+
+/* Hover Effect */
+.gender-nav-pills .nav-link:hover {
+    color: #fff;
+}
+.fa-user,.fa-calendar-days {
+    font-size: 2.5rem;
+    color: #ffffff;
+}
+
+/* Input Group Styles */
+.inputGroup {
+    display: flex;
+    align-items: center;
+    background-color: #252525;
+    border-radius: 50px;
+    border: 1px solid #4e4e4e;
+    padding: 0.5rem;
+    max-width: 390px;
+    margin: 1rem auto;
+}
+.zodiac-next:hover, #contact:hover {
+    background-color: #C80A95 !important;
+}
+.datepicker.datepicker-dropdown.dropdown-menu.datepicker-orient-left.datepicker-orient-top {
+    width: 350px;
+}
+table.table-condensed {
+    width: 350px;
+}
+.modal .head-img img {
+    width: 150px;
+}
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-clip: padding-box;
+    outline: 0;
+}
+.fw-bold {
+    font-weight: 400 !important;
+    color: black;
+    ont-weight: bolder;
+}
+footer a {
+    text-decoration: none !important;
+}
+select#subject {
+    color: #9F9F9F !important;
+}
+.btn-round-full {
+    border-radius: 50px;
+}
+
+.btn-small {
+    padding: 10px 25px;
+    font-size: 12px;
+}
+.btn-main, .btn-transparent, .btn-small {
+    background: #C80A95;
+    color: #fff;
+    transition: all 0.2s ease;
+}
+.btn-main:hover, .btn-transparent:hover, .btn-small:hover {
+    /*background: #f75757;*/
+    background: #0282e3;
+}
+.bg-1 {
+    background-size: cover;
+    padding: 100px 0;
+}
+.mid-header {
+    position: relative;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; /* Ensures it takes up the full viewport */
+    overflow: hidden;
+}
+
+.video-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
+.text-overlay,.mid-message {
+    position: absolute;
+    text-align: center;
+    color: #fff;
+    z-index: 1;
+}
+.aboutus-image {
+    aspect-ratio: 534 / 442 !important; /* Defines the aspect ratio */
+    max-width: 534px !important; /* Optional: to restrict maximum width */
+    max-height: 442px !important; /* Optional: to restrict maximum height */
+}
+.listing-img-fluid {
+    width: 100%; /* Ensures the image takes the full width of its container */
+    height: auto; /* Maintains the aspect ratio */
+    object-fit: cover; /* Ensures the image covers the specified dimensions */
+    aspect-ratio: 356 / 256; /* Defines the aspect ratio */
+    max-width: 356px; /* Optional: to restrict maximum width */
+    max-height: 256px; /* Optional: to restrict maximum height */
+    border-radius: 8px; /* Optional: Rounded corners for styling */
+}
+.single-img-fluid {
+    width: 100%; /* Ensures the image takes the full width of its container */
+    height: auto; /* Maintains the aspect ratio */
+    object-fit: cover; /* Ensures the image covers the specified dimensions */
+    aspect-ratio: 736 / 500; /* Defines the aspect ratio */
+    max-width: 736px; /* Optional: to restrict maximum width */
+    max-height: 500px; /* Optional: to restrict maximum height */
+    border-radius: 8px; /* Optional: Rounded corners for styling */
+}
+.sub-title{
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    text-align: initial !important;
+}
+.listing-blog-item-content {
+    aspect-ratio: 356 / 368 !important; /* Defines the aspect ratio */
+    max-width: 356px !important; /* Optional: to restrict maximum width */
+    max-height: 368px !important; /* Optional: to restrict maximum height */
+}
+.blog-item-meta {
+    padding-left: .5rem !important;
+    padding-right: .5rem !important;
+    padding-bottom: .25rem !important;
+    padding-top: .25rem !important;
+}
+.fa-blog,.fa-clock{
+    font-size: 20px;
+    padding: 8px;
+}
+.media {
+    display: flex;
+    align-items: flex-start;
+}
+.media-body {
+    margin-left: 2rem;
+    flex: 1;
+}
+.tags a {
+    background: #f5f8f9;
+    display: inline-block;
+    padding: 8px 23px;
+    border-radius: 38px;
+    margin-bottom: 10px;
+    border: 1px solid #eee;
+    font-size: 14px;
+    text-transform: capitalize;
+}
+.bg-gray{
+    background: #f5f8f9;
+}
+.media-body a:hover {
+    color: #236EFD !important;
+}
+.search-form-control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+.pagination .nav-links a.next, .pagination .nav-links a.prev {
+    color: #C80A95;
+}
+.current-page {
+    color: #c9c9c9 !important;
+}
+.pagination .nav-links a, .pagination .nav-links span.current {
+    font-size: 20px;
+    font-weight: 500;
+    color: #236EFD;
+    margin: 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+}
+
+@media (min-width: 1400px) {
+    .text-overlay{
+        margin-top: 25px;
+    }
+    .mid-message{
+        margin-top: 550px;
+    }
+}
+@media (min-width: 992px) and (max-width: 1399px) {
+    .text-overlay{
+        margin-top: 8px;
+    }
+    .mid-message{
+        margin-top: 480px;
+    }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+    .col-md-6 {
+        flex: 0 0 auto;
+        width: 72%;
+    }
+    .text-overlay{
+        margin-top: 10px;
+    }
+    .mid-message{
+        margin-top: 490px;
+    }
+}
+@media (min-width: 456px) and (max-width: 767px) {
+    .text-overlay{
+        margin-top: 10px;
+    }
+    .mid_title{
+        font-size: medium;
+    }
+    .mid_subtitle{
+        font-size: small;
+    }
+    .mid-message{
+        margin-top: 490px;
+    }
+}
+@media (min-width: 350px) and (max-width: 455px) {
+    .nav-pills {
+        display: flex;
+        flex-wrap: wrap; /* Allow items to wrap to a new line */
+        gap: 2px; /* Uniform 2px gap between items */
+        justify-content: start; /* Align items to the start of the row */
+    }
+    .nav-pills .nav-item {
+        flex: 0 0 calc(21.33% - 0px); /* Make the first three items fit in one line */
+        margin: 2px; /* Remove default margins */
+    }
+
+    .nav-pills .nav-link {
+        text-align: center; /* Center-align text inside the buttons */
+        padding: 10px; /* Add consistent padding to all links */
+    }
+    .text-overlay{
+        margin-top: 0px;
+        font-size: small;
+    }
+    .mid_title{
+        font-size: medium;
+    }
+    .mid-message{
+        margin-top: 490px;
+    }
+}
+
+

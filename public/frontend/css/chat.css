@@ -1,0 +1,201 @@
+/* Main container for tarot cards */
+.tarot-grid-container {
+    display: grid;
+    gap: 15px; /* Space between images */
+    grid-template-columns: repeat(8, 1fr); /* Default for large screens (8 images per row) */
+}
+
+@media (max-width: 1200px) { /* For medium-sized devices (tablets) */
+    .tarot-grid-container {
+        grid-template-columns: repeat(4, 1fr); /* 4 images per row */
+    }
+}
+
+@media (max-width: 768px) { /* For small devices (phones) */
+    .tarot-grid-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 images per row */
+    }
+}
+
+.tarot-card {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.tarot-card img {
+    width: 100%; /* Images should fill the container */
+    height: auto;
+}
+
+.tarot-back, .tarot-front {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    overflow: hidden;
+    /*padding: 10px;*/
+}
+/*Stripe Payment modal*/
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    color: red;
+    pointer-events: auto;
+    background-color: yellow;
+    background-clip: padding-box;
+    border: 1px solid blue;
+    border-radius: 5px;
+    outline: 0;
+}
+#payment-modal .modal-content {
+    border-color: #a2bf2c;
+    border-width: 0.5rem;
+    background-color: #fffbd8;
+    color: #0a0a0a;
+}
+#payment-modal .modal-header {
+    background-color: #a2bf2c;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+/**/
+.ai-chat-top {
+    padding: 5px 1em;
+    border-bottom: 1px solid #9900d5;
+    min-height: 103px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #64008b;
+}
+.wrapper-ai-chat-top {
+    display: flex;
+    gap: 0 16px;
+    align-items: center;
+}
+.ai-chat-top-image {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #0579ce;
+}
+
+.ai-chat-top-image img {
+    width: 100%;
+}
+
+.ai-chat-top-name h4 {
+    color: #FFF;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 0;
+}
+
+.ai-chat-top-job {
+    display: block;
+    font-size: 16px;
+    color: #FFF;
+}
+
+.online-bullet {
+    background: #02D00A;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.icons-options .dropdown-toggle {
+    padding: 0;
+    border: 0;
+}
+
+.btn-check:checked + .btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check) + .btn:active, .dropdown-toggle::after {
+    color: #FFF;
+}
+
+.icons-options {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    justify-content: flex-end;
+}
+
+.icons-options img {
+    padding: 0 4px;
+}
+
+.icons-options img:hover {
+    cursor: pointer;
+}
+/*Chat history page css*/
+.second-page {
+    text-align: center;
+    padding: 20px;
+}
+
+.second-page h1 {
+    font-size: 2rem;
+}
+
+.second-page h2 {
+    font-size: 1.5rem;
+}
+
+.second-page p {
+    font-size: 1rem;
+    font-weight: bold;
+}
+.zodiac-section {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.zodiac {
+    text-align: center;
+}
+
+.zodiac img {
+    width: 200px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.zodiac p {
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.cards img {
+    width: 200px;
+    object-fit: cover;
+}
+.zodiac-api-response, .tairot-api-response {
+    text-align: justify;
+    line-height: 1.8;
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    margin: 0 auto;
+    width: 80%;
+}
+
+.zodiac-api-response, .tairot-api-response p {
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
