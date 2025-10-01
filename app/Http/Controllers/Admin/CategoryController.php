@@ -59,7 +59,7 @@ class CategoryController extends Controller
         if ($request->hasFile('logo')) {
             $image = $request->file('logo');
             $fileName = time() . '_' . $image->getClientOriginalName();
-            $image->move(public_path('frontend/assets/category'), $fileName);
+            $image->move(public_path('admin/assets/category'), $fileName);
             $logoPath = $fileName;
         }
 
@@ -96,7 +96,7 @@ class CategoryController extends Controller
         if ($request->hasFile('logo')) {
             $image = $request->file('logo');
             $fileName = time() . '_' . $image->getClientOriginalName();
-            $image->move(public_path('frontend/assets/category'), $fileName);
+            $image->move(public_path('admin/assets/category'), $fileName);
             $logoPath = $fileName;
         } else {
             $logoPath = $request->input('previous_logo');
