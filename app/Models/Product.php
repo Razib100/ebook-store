@@ -19,7 +19,6 @@ class Product extends Model
         'pdf_file',
         'epub_file',
         'mobi_file',
-        'is_visible',
         'is_trending',
         'status',
     ];
@@ -30,7 +29,6 @@ class Product extends Model
      */
     protected $casts = [
         'product_gallery' => 'array',  // Laravel will auto-cast JSON to array
-        'is_visible'      => 'boolean',
         'is_trending'     => 'boolean',
         'status'          => 'integer',
     ];

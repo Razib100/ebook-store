@@ -36,8 +36,11 @@
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
+                    <th>Logo</th>
                     <th>Position</th>
                     <th>Visible In Menu</th>
+                    <th>trending Category</th>
+                    <th>status</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -46,8 +49,37 @@
                 <tr>
                     <td>{{ $category->id }}</td>
                     <td>{{ $category->name }}</td>
+                    <td>
+                        @if(isset($category->logo))
+                        <img src="{{ asset('admin/assets/category/' . $category->logo) }}"
+                            alt="Logo"
+                            style="height:50px; width:50px; object-fit:cover; border-radius:5px;">
+                        @else
+                        -
+                        @endif
+                    </td>
                     <td>{{ $category->position }}</td>
-                    <td>{{ $category->is_visible }}</td>
+                    <td>
+                        @if($product->is_visible)
+                        <span class="badge badge-info">Yes</span>
+                        @else
+                        <span class="badge badge-secondary">No</span>
+                        @endif
+                    </td>
+                    <td>
+                        @if($product->is_trending)
+                        <span class="badge badge-info">Yes</span>
+                        @else
+                        <span class="badge badge-secondary">No</span>
+                        @endif
+                    </td>
+                    <td>
+                        @if($product->is_visible)
+                        <span class="badge badge-primary">Yes</span>
+                        @else
+                        <span class="badge badge-secondary">No</span>
+                        @endif
+                    </td>
                     <td>
                         <!-- View Button -->
                         <a href="{{ route('category.view', $category->id) }}" class="btn btn-sm btn-primary">
@@ -75,8 +107,11 @@
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
+                    <th>Logo</th>
                     <th>Position</th>
                     <th>Visible In Menu</th>
+                    <th>trending Category</th>
+                    <th>status</th>
                     <th>Action</th>
                 </tr>
             </tfoot>

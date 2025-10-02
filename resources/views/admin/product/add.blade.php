@@ -188,16 +188,6 @@
                 <div class="col-sm-3">
                     <div class="form-group">
                         <div class="custom-control custom-switch">
-                            <input type="checkbox" name="is_visible" class="custom-control-input" id="customSwitch1"
-                                {{ old('is_visible', $product->is_visible ?? false) ? 'checked' : '' }}>
-                            <label class="custom-control-label" for="customSwitch1">Visible in menu</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <div class="custom-control custom-switch">
                             <input type="checkbox" name="is_trending" class="custom-control-input" id="customSwitch2"
                                 {{ old('is_trending', $product->is_trending ?? false) ? 'checked' : '' }}>
                             <label class="custom-control-label" for="customSwitch2">Trending</label>

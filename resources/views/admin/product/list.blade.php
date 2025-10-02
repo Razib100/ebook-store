@@ -61,7 +61,6 @@
                     <th>Cover Image</th>
                     <th>Status</th>
                     <th>Trending</th>
-                    <th>Visible</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -89,13 +88,6 @@
                     <td>
                         @if($product->is_trending)
                         <span class="badge badge-info">Yes</span>
-                        @else
-                        <span class="badge badge-secondary">No</span>
-                        @endif
-                    </td>
-                    <td>
-                        @if($product->is_visible)
-                        <span class="badge badge-primary">Yes</span>
                         @else
                         <span class="badge badge-secondary">No</span>
                         @endif
@@ -132,7 +124,6 @@
                     <th>Cover Image</th>
                     <th>Status</th>
                     <th>Trending</th>
-                    <th>Visible</th>
                     <th>Action</th>
                 </tr>
             </tfoot>

@@ -75,7 +75,6 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
         $product->price = $request->price;
         $product->description = $request->description;
-        $product->is_visible = $request->has('is_visible');
         $product->is_trending = $request->has('is_trending');
         $product->status = $request->status;
 
@@ -152,7 +151,6 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
         $product->price = $request->price;
         $product->description = $request->description;
-        $product->is_visible = $request->has('is_visible');
         $product->is_trending = $request->has('is_trending');
         $product->status = $request->status;
 
