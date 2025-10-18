@@ -60,21 +60,21 @@
                     </td>
                     <td>{{ $category->position }}</td>
                     <td>
-                        @if($product->is_visible)
+                        @if($category->is_visible)
                         <span class="badge badge-info">Yes</span>
                         @else
                         <span class="badge badge-secondary">No</span>
                         @endif
                     </td>
                     <td>
-                        @if($product->is_trending)
+                        @if($category->is_trending)
                         <span class="badge badge-info">Yes</span>
                         @else
                         <span class="badge badge-secondary">No</span>
                         @endif
                     </td>
                     <td>
-                        @if($product->is_visible)
+                        @if($category->is_visible)
                         <span class="badge badge-primary">Yes</span>
                         @else
                         <span class="badge badge-secondary">No</span>

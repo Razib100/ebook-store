@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="{{ asset('/admin/assets/plugins/select2/css/select2.min.css') }}">
 <link rel="stylesheet" href="{{ asset('/admin/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('/admin/assets/plugins/summernote/summernote-bs4.min.css') }}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
 @endsection
 
 @section('content')
@@ -41,7 +42,7 @@
 
             <!-- Title & Category -->
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <div class="form-group">
                         <label>Title: <span class="text-danger">*</span></label>
                         <input type="text" name="title" class="form-control"
@@ -52,10 +53,44 @@
                         @enderror
                     </div>
                 </div>
-
-                <div class="col-sm-6">
+                <!-- <div class="col-sm-4">
                     <div class="form-group">
-                        <label>Category</label>
+                        <label>Author: <span class="text-danger">*</span></label>
+                        <select class="form-control select2" name="author_id" style="width: 100%;">
+                            <option value="">Select Author</option>
+                            @foreach($authors as $author)
+                            <option value="{{ $author->id }}"
+                                {{ old('author_id', $product->author_id ?? '') == $author->id ? 'selected' : '' }}>
+                                {{ $author->name }}
+                            </option>
+                            @endforeach
+                        </select>
+                        @error('author_id')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div> -->
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Author: <span class="text-danger">*</span></label>
+                        <select class="form-control select2" name="author" style="width: 100%;" data-tags="true">
+                            <option value="">Select Author</option>
+                            @foreach($authors as $author)
+                            <option value="{{ $author->id }}"
+                                {{ old('author', $product->author_id ?? '') == $author->id ? 'selected' : '' }}>
+                                {{ $author->name }}
+                            </option>
+                            @endforeach
+                        </select>
+                        @error('author')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Category: <span class="text-danger">*</span></label>
                         <select class="form-control select2" name="category_id" style="width: 100%;">
                             <option value="">Select Category</option>
                             @foreach($categories as $cat)
@@ -74,7 +109,7 @@
 
             <!-- Price & Cover -->
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <div class="form-group">
                         <label>Price: <span class="text-danger">*</span></label>
                         <input type="text" name="price" class="form-control" placeholder="Enter price"
@@ -84,10 +119,16 @@
                         @enderror
                     </div>
                 </div>
-
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <div class="form-group">
-                        <label>Cover Image:</label>
+                        <label>Discount:</label>
+                        <input type="text" name="percentage" class="form-control" placeholder="Enter discount"
+                            value="{{ old('percentage', $product->percentage ?? '') }}">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Cover Image: <span class="text-danger">*</span></label>
                         <input type="file" name="cover_image" class="form-control"
                             onchange="previewCoverImage()" id="coverImageInput" accept="image/*">
 
@@ -105,17 +146,31 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Short Description: <span class="text-danger">*</span></label>
+                        <textarea name="short_description" class="form-control">{{ old('short_description', $product->short_description ?? '') }}</textarea>
+                        @error('short_description')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+            </div>
 
             <!-- Description -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="card card-outline card-info">
                         <div class="card-header">
-                            <h3 class="card-title">Description</h3>
+                            <h3 class="card-title">Description: <span class="text-danger">*</span></h3>
                         </div>
                         <div class="card-body">
                             <textarea id="summernote" name="description">{{ old('description', $product->description ?? '') }}</textarea>
                         </div>
+                        @error('description')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
             </div>
@@ -149,6 +204,15 @@
                     @enderror
                 </div>
             </div>
+            <div class="form-group">
+                <label>Tags:</label>
+                <input type="text" name="tags" id="tags" class="form-control"
+                    placeholder="Add tags (separate with comma)"
+                    value="{{ old('tags', isset($product) ? implode(',', $product->tags ?? []) : '') }}">
+                @error('tags')
+                <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
 
             <!-- File Uploads -->
             <div class="row mt-3">
@@ -161,7 +225,7 @@
                             <p class="mt-1"><a href="{{ asset($product->pdf_file) }}" target="_blank">Current PDF</a></p>
                             @endif
                             <small class="text-muted">Upload PDF</small>
-                            
+
                         </div>
                         <div class="mr-3">
                             <input type="file" name="epub_file" class="form-control-file">
@@ -169,7 +233,7 @@
                             <p class="mt-1"><a href="{{ asset($product->epub_file) }}" target="_blank">Current EPUB</a></p>
                             @endif
                             <small class="text-muted">Upload EPUB</small>
-                            
+
                         </div>
                         <div class="mr-3">
                             <input type="file" name="mobi_file" class="form-control-file">
@@ -177,8 +241,13 @@
                             <p class="mt-1"><a href="{{ asset($product->mobi_file) }}" target="_blank">Current MOBI</a></p>
                             @endif
                             <small class="text-muted">Upload MOBI</small>
-                        
+
                         </div>
+                        @if($errors->has('pdf_file') || $errors->has('epub_file') || $errors->has('mobi_file'))
+                        <div class="text-danger mt-1">
+                            At least one file (PDF, EPUB, or MOBI) must be uploaded.
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -189,8 +258,17 @@
                     <div class="form-group">
                         <div class="custom-control custom-switch">
                             <input type="checkbox" name="is_trending" class="custom-control-input" id="customSwitch2"
-                                {{ old('is_trending', $product->is_trending ?? false) ? 'checked' : '' }}>
+                                {{ old('is_trending', isset($product) ? $product->is_trending : true) ? 'checked' : '' }}>
                             <label class="custom-control-label" for="customSwitch2">Trending</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" name="home_visible" class="custom-control-input" id="customSwitch3"
+                                {{ old('home_visible', isset($product) ? $product->home_visible : true) ? 'checked' : '' }}>
+                            <label class="custom-control-label" for="customSwitch3">Visible In Home</label>
                         </div>
                     </div>
                 </div>
@@ -201,12 +279,12 @@
                         <div class="col-sm-10 d-flex align-items-center">
                             <div class="form-check form-check-inline">
                                 <input type="radio" class="form-check-input" name="status" value="0"
-                                    {{ old('status', $product->status ?? '0') == '0' ? 'checked' : '' }}>
+                                    {{ old('status', $product->status ?? '1') == '0' ? 'checked' : '' }}>
                                 <label class="form-check-label">Inactive</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input type="radio" class="form-check-input" name="status" value="1"
-                                    {{ old('status', $product->status ?? '0') == '1' ? 'checked' : '' }}>
+                                    {{ old('status', $product->status ?? '1') == '1' ? 'checked' : '' }}>
                                 <label class="form-check-label">Active</label>
                             </div>
                         </div>
@@ -230,6 +308,7 @@
 @section('script')
 <script src="{{ asset('/admin/assets/plugins/select2/js/select2.full.min.js') }}"></script>
 <script src="{{ asset('/admin/assets/plugins/summernote/summernote-bs4.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 
 <script>
     $(function() {
@@ -332,6 +411,28 @@
             const dataTransfer = new DataTransfer();
             galleryFiles.forEach(file => dataTransfer.items.add(file));
             fileInput.files = dataTransfer.files;
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const tagsInput = document.getElementById('tags');
+        new Choices(tagsInput, {
+            removeItemButton: true,
+            delimiter: ',',
+            editItems: true,
+            duplicateItemsAllowed: false
+        });
+    });
+    // this code is alow for user type as a author name
+    $('.select2').select2({
+        theme: 'bootstrap4',
+        tags: true, // Allow user to add new text
+        createTag: function(params) {
+            return {
+                id: params.term,
+                text: params.term,
+                newOption: true
+            };
         }
     });
 </script>

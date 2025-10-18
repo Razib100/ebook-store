@@ -1,0 +1,51 @@
+/* Force modal overlay above all other elements */
+.modal-backdrop {
+    z-index: 1055 !important;
+  }
+  
+  /* Ensure modal content is above the backdrop */
+  #payment-modal {
+    z-index: 1060 !important;
+  }
+  
+  /* Center content properly */
+  #payment-modal .modal-dialog {
+    max-width: 450px;
+    margin: auto;
+  }
+  
+  /* Style modal content nicely */
+  #payment-modal .modal-content {
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+  }
+  
+  /* Add smooth fade animation */
+  #payment-modal.fade .modal-dialog {
+    transform: translateY(-30px);
+    transition: transform 0.3s ease-out;
+  }
+  
+  #payment-modal.show .modal-dialog {
+    transform: translateY(0);
+  }
+  
+  /* Spinner and loading text */
+  #payment-loading-content p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+  }
+ .payment_status {
+    color: var(--white-color);
+    font-size: 16px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background-color: var(--theme-color);
+    border-radius: 50%;
+    text-align: center;
+    transition: all 0.5s ease;
+    padding: 10px 10px;
+}

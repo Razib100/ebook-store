@@ -54,7 +54,7 @@
         <table id="example1" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>Created By</th>
                     <th>Title</th>
                     <th>Category</th>
                     <th>Price</th>
@@ -67,7 +67,7 @@
             <tbody>
                 @foreach($products as $product)
                 <tr>
-                    <td>{{ $product->id }}</td>
+                    <td>{{ $product->created_by }}</td>
                     <td>{{ $product->title }}</td>
                     <td>{{ $product->category ? $product->category->name : '-' }}</td>
                     <td>{{ number_format($product->price, 2) }}</td>
@@ -79,11 +79,19 @@
                         @endif
                     </td>
                     <td>
-                        @if($product->status)
+                        <!-- @if($product->status)
                         <span class="badge badge-success">Active</span>
                         @else
                         <span class="badge badge-danger">Inactive</span>
-                        @endif
+                        @endif -->
+                        <form action="{{ route('product.toggleStatus', $product->id) }}" method="POST" style="display:inline">
+                            @csrf
+                            @if($product->status)
+                            <button type="submit" class="btn btn-success btn-sm" style="padding: 0.15rem 0.4rem; font-size: 0.7rem;">Active</button>
+                            @else
+                            <button type="submit" class="btn btn-danger btn-sm" style="padding: 0.15rem 0.4rem; font-size: 0.7rem;">Inactive</button>
+                            @endif
+                        </form>
                     </td>
                     <td>
                         @if($product->is_trending)
@@ -117,7 +125,7 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <th>ID</th>
+                    <th>Created By</th>
                     <th>Title</th>
                     <th>Category</th>
                     <th>Price</th>
@@ -168,7 +176,7 @@
     });
     setTimeout(() => {
         const flash = document.getElementById('flashMessageContainer');
-        if(flash) {
+        if (flash) {
             flash.style.display = 'none';
         }
     }, 5000);

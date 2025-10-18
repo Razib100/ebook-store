@@ -12,25 +12,35 @@ class Product extends Model
     protected $fillable = [
         'title',
         'category_id',
+        'author_id',
         'price',
         'cover_image',
-        'description',
         'product_gallery',
+        'description',
+        'short_description',
         'pdf_file',
         'epub_file',
         'mobi_file',
+        'tags',
+        'download_count',
+        'percentage',
+        'date',
+        'home_visible',
         'is_trending',
         'status',
+        'created_by'
     ];
 
     /**
      * Casts
-     * product_gallery will be stored as JSON
      */
     protected $casts = [
-        'product_gallery' => 'array',  // Laravel will auto-cast JSON to array
+        'product_gallery' => 'array',   // JSON -> Array
+        'home_visible'    => 'boolean',
         'is_trending'     => 'boolean',
         'status'          => 'integer',
+        'date'            => 'date',
+        'tags' => 'array', // automatically casts JSON <-> array
     ];
 
     /**
@@ -39,5 +49,13 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * Relationship: Product belongs to Author
+     */
+    public function author()
+    {
+        return $this->belongsTo(Author::class);
     }
 }
