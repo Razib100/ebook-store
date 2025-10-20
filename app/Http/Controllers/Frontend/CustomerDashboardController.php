@@ -62,6 +62,7 @@ class CustomerDashboardController extends Controller
                 'payments.status as payment_status'
             )
             ->get();
+            
         return view('customer.dashboard', compact('customer', 'categories', 'products'));
     }
     public function store(Request $request, $productId)
@@ -177,7 +178,7 @@ class CustomerDashboardController extends Controller
             $product->created_by = 'customer';
             $product->category_id = $request->category_id;
             $product->price = $request->price;
-            $product->percentage = $request->percentage;
+            $product->percentage = $request->percentage ?? 0;
             $product->short_description = $request->short_description;
             $product->description = $request->description;
             $product->tags = $request->tags ? explode(',', $request->tags) : [];

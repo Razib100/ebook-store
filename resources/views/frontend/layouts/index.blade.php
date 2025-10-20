@@ -57,6 +57,27 @@
     <!--********************************
 			Code End  Here 
 	******************************** -->
+    <!-- Cookie start -->
+    <div class="position-fixed bottom-0 start-0 w-100 bg-dark py-5 cookie__box d-none" id="cookieBox" style="z-index: 9999;">
+        <div class="container">
+            <div class="row g-3 gx-lg-5 align-items-center">
+                <div class="col-sm-9">
+                    <p class="text-white mb-0">
+                        We use cookies on this website to show you relevant information, understand
+                        how you use the site, and ensure the site functions properly.
+                        Manage your cookie preferences | Our privacy information
+                    </p>
+                </div>
+                <div class="col-sm-3 text-end">
+                    <button class="btn btn-primary" type="button" id="cookieBtn">ACCEPT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div id="overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9998;"></div>
+    <!-- Cookie End -->
     <!-- Bootstrap Toast Notification Container -->
     <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999">
         <div id="globalToast" class="toast align-items-center text-white border-0" role="alert" aria-live="assertive" aria-atomic="true">
@@ -100,6 +121,47 @@
     <script src="{{ asset('/frontend/assets/js/nouislider.min.js') }}"></script>
     <!-- Main Js File -->
     <script src="{{ asset('/frontend/assets/js/main.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            const cookiesAccepted = getCookie('cookiesAccepted');
+            const cookieBox = $('#cookieBox');
+            const overlay = $('#overlay');
+
+            if (cookiesAccepted !== 'true') {
+                // Show cookie box & overlay
+                cookieBox.removeClass('d-none');
+                overlay.show();
+                $('body').css('pointer-events', 'none'); // Disable all clicks
+                cookieBox.css('pointer-events', 'auto'); // Allow clicks on the cookie box only
+            }
+
+            $('#cookieBtn').on('click', function() {
+                setCookie('cookiesAccepted', 'true', 30);
+                cookieBox.addClass('d-none');
+                overlay.hide();
+                $('body').css('pointer-events', 'auto'); // Enable page clicks again
+            });
+        });
+
+        // Helper: Set cookie
+        function setCookie(name, value, days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            document.cookie = `${name}=${value}; expires=${date.toUTCString()}; path=/`;
+        }
+
+        // Helper: Get cookie
+        function getCookie(name) {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i].trim();
+                if (cookie.startsWith(name + '=')) {
+                    return cookie.split('=')[1];
+                }
+            }
+            return null;
+        }
+    </script>
     <script>
         // Global function to show toast
         function showToast(message, type = 'success') {

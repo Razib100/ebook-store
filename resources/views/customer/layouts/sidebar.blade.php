@@ -9,7 +9,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="info">
-                <a href="#" class="d-block">{{ $customer->first_name . ' ' . $customer->last_name }}</a>
+                <a href="#" class="d-block">{{ Auth::guard('customer')->user()->first_name . ' ' . Auth::guard('customer')->user()->last_name }}</a>
             </div>
         </div>
 

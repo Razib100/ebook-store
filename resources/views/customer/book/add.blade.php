@@ -85,12 +85,18 @@
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label>Price: <span class="text-danger">*</span></label>
-                        <input type="text" name="price" class="form-control" placeholder="Enter price"
-                            value="{{ old('price', $product->price ?? '') }}">
+                        <select class="form-control select2" name="price" style="width: 100%;">
+                            <option value="">Select Price</option>
+                            <option value="0" {{ old('price', $product->price ?? '') == 0 ? 'selected' : '' }}>Free</option>
+                            @for ($i = 1; $i <= 20; $i++)
+                                <option value="{{ $i }}" {{ old('price', $product->price ?? '') == $i ? 'selected' : '' }}>zł {{ $i }}</option>
+                                @endfor
+                        </select>
                         @error('price')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
+
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
