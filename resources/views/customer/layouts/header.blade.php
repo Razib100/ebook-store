@@ -131,9 +131,9 @@
                     <i class="fas fa-envelope mr-2"></i> Profile
                 </a>
                 <div class="dropdown-divider"></div>
-                <form method="POST" action="{{ route('logout') }}">
+                <form method="POST" action="{{ route('customer.logout') }}">
                     @csrf
-                <a class="dropdown-item" :href="route('logout')"
+                <a class="dropdown-item" :href="route('customer.logout')"
                    onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                     <i class="fas fa-users mr-2"></i> Signout </a>

@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\AuthorPaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\productController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\AuthorController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -105,13 +105,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/category/delete/{id}', [CategoryController::class, 'categoryDelete'])->name('category.delete');
 
     // Product
-    Route::get('/product', [productController::class, 'product'])->name('product');
-    Route::get('/product/add/{id?}', [productController::class, 'productAdd'])->name('product.add');
-    Route::get('/product/view/{id?}', [productController::class, 'productView'])->name('product.view');
-    Route::post('/product/store', [productController::class, 'productStore'])->name('product.store');
-    Route::post('/product/update/{id}', [productController::class, 'productUpdate'])->name('product.update');
-    Route::delete('/product/delete/{id}', [productController::class, 'productDelete'])->name('product.delete');
-    Route::post('/product/toggle-status/{id}', [productController::class, 'toggleStatus'])->name('product.toggleStatus');
+    Route::get('/product', [ProductController::class, 'product'])->name('product');
+    Route::get('/product/add/{id?}', [ProductController::class, 'productAdd'])->name('product.add');
+    Route::get('/product/view/{id?}', [ProductController::class, 'productView'])->name('product.view');
+    Route::post('/product/store', [ProductController::class, 'productStore'])->name('product.store');
+    Route::post('/product/update/{id}', [ProductController::class, 'productUpdate'])->name('product.update');
+    Route::delete('/product/delete/{id}', [ProductController::class, 'productDelete'])->name('product.delete');
+    Route::post('/product/toggle-status/{id}', [ProductController::class, 'toggleStatus'])->name('product.toggleStatus');
 
     Route::get('/review', [AuthorPaymentController::class, 'review'])->name('review');
     Route::get('/admin/review/status/{id}', [AuthorPaymentController::class, 'changeStatus'])->name('admin.review.status');
