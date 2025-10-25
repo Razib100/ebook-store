@@ -58,7 +58,7 @@
                         <label>Author: <span class="text-danger">*</span></label>
                         <input type="text" name="author_id" class="form-control"
                             placeholder="Enter Author name"
-                            value="{{ $author->first_name . ' ' . $author->last_name }}" disabled>
+                            value="{{ $author->first_name . ' ' . $author->last_name }}" readonly>
                     </div>
                 </div>
                 <div class="col-sm-4">
