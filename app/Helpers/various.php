@@ -74,4 +74,22 @@ class Various
 
         return $phone;
     }
+    public static function isAuthorProduct($productId)
+    {
+        $customerId = Auth::guard('customer')->id();
+
+        if (!$customerId) {
+            return false;
+        }
+        
+        $author = Author::where('customer_id', $customerId)->first();
+
+        if (!$author) {
+            return false;
+        }
+
+        return \App\Models\Product::where('author_id', $author->id)
+            ->where('id', $productId)
+            ->exists();
+    }
 }

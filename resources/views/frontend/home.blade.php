@@ -42,8 +42,9 @@
             <div class="product-btns">
               @php
               $isPurchased = \App\Helpers\Various::isPurchased($product->id);
+              $isAuthorProduct = \App\Helpers\Various::isAuthorProduct($product->id);
               @endphp
-              @if(!$isPurchased)
+              @if(!$isPurchased && !$isAuthorProduct)
               <a href="javascript:void(0);" class="icon-btn cart add-to-cart" data-id="{{ $product->id }}">
                 <i class="fa-solid fa-basket-shopping"></i>
               </a>
@@ -207,8 +208,9 @@
             <div class="product-btn">
               @php
               $isPurchased = \App\Helpers\Various::isPurchased($product->id);
+              $isAuthorProduct = \App\Helpers\Various::isAuthorProduct($product->id);
               @endphp
-              @if(!$isPurchased)
+              @if(!$isPurchased && !$isAuthorProduct)
               <a href="javascript:void(0);" class="icon-btn cart add-to-cart" data-id="{{ $product->id }}">
                 <i class="fa-solid fa-basket-shopping"></i>
               </a>
@@ -300,8 +302,9 @@
             <div class="product-btns">
               @php
               $isPurchased = \App\Helpers\Various::isPurchased($product->id);
+              $isAuthorProduct = \App\Helpers\Various::isAuthorProduct($product->id);
               @endphp
-              @if(!$isPurchased)
+              @if(!$isPurchased && !$isAuthorProduct)
               <a href="javascript:void(0);" class="icon-btn cart add-to-cart" data-id="{{ $product->id }}">
                 <i class="fa-solid fa-basket-shopping"></i>
               </a>
@@ -365,8 +368,9 @@
             <div class="product-btns">
               @php
               $isPurchased = \App\Helpers\Various::isPurchased($product->id);
+              $isAuthorProduct = \App\Helpers\Various::isAuthorProduct($product->id);
               @endphp
-              @if(!$isPurchased)
+              @if(!$isPurchased && !$isAuthorProduct)
               <a href="javascript:void(0);" class="icon-btn cart add-to-cart" data-id="{{ $product->id }}">
                 <i class="fa-solid fa-basket-shopping"></i>
               </a>
