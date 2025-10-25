@@ -18,8 +18,7 @@ class PaymentController extends Controller
 {
     public function createPaymentIntent(Request $request)
     {
-        Stripe::setApiKey(env('STRIPE_CLIENT_SECRET'));
-
+        Stripe::setApiKey(config('services.stripe.secret'));
         $paymentIntent = \Stripe\PaymentIntent::create([
             'amount' => 400, // Amount in cents (4.00zł)
             'currency' => 'pln',
@@ -31,7 +30,7 @@ class PaymentController extends Controller
 
         $output = [
             'clientSecret' => $paymentIntent->client_secret,
-            'publicKey' => env('STRIPE_PUB_KEY')
+            'publicKey' => config('services.stripe.key')
         ];
 
         return json_encode($output);
@@ -41,7 +40,7 @@ class PaymentController extends Controller
     {
         DB::beginTransaction();
         try {
-            Stripe::setApiKey(env('STRIPE_CLIENT_SECRET'));
+            Stripe::setApiKey(config('services.stripe.secret'));
 
             $cart = session('cart', []);
             $userId = Auth::guard('customer')->id();

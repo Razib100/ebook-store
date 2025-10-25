@@ -89,7 +89,7 @@ class CustomerDashboardController extends Controller
     {
         $customerId = Auth::guard('customer')->id();
         $existingAuthor = Author::where('customer_id', $customerId)->first();
-        $products = Product::where('author_id', $existingAuthor->id)->where('created_by', 'customer')->latest()->paginate(20);
+        $products = $existingAuthor ? Product::where('author_id', $existingAuthor->id)->where('created_by', 'customer')->latest()->paginate(20) : $products = collect();
         return view('customer.book.list', compact('products'));
     }
 
