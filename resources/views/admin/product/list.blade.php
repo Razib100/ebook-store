@@ -56,6 +56,7 @@
                 <tr>
                     <th>Created By</th>
                     <th>Title</th>
+                    <th>Creation Date</th>
                     <th>Category</th>
                     <th>Price</th>
                     <th>Cover Image</th>
@@ -67,8 +68,9 @@
             <tbody>
                 @foreach($products as $product)
                 <tr>
-                    <td>{{ $product->created_by }}</td>
+                    <td>{{ \App\Helpers\Various::getProductCreationName($product->created_by, $product->author_id) }}</td>
                     <td>{{ $product->title }}</td>
+                    <td>{{ $product->created_at }}</td>
                     <td>{{ $product->category ? $product->category->name : '-' }}</td>
                     <td>{{ number_format($product->price, 2) }}</td>
                     <td>
@@ -127,6 +129,7 @@
                 <tr>
                     <th>Created By</th>
                     <th>Title</th>
+                    <th>Creation Date</th>
                     <th>Category</th>
                     <th>Price</th>
                     <th>Cover Image</th>
@@ -162,6 +165,7 @@
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
+            "order": [[2, "desc"]],
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({

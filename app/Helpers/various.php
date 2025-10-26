@@ -81,7 +81,7 @@ class Various
         if (!$customerId) {
             return false;
         }
-        
+
         $author = Author::where('customer_id', $customerId)->first();
 
         if (!$author) {
@@ -91,5 +91,25 @@ class Various
         return \App\Models\Product::where('author_id', $author->id)
             ->where('id', $productId)
             ->exists();
+    }
+
+    public static function getProductCreationName($created_by, $author_id = null)
+    {
+        if ($created_by == 'customer' && $author_id) {
+            $customer_id = Author::where('id', $author_id)->value('customer_id');
+
+            if ($customer_id) {
+                $customer = Customer::select('first_name', 'last_name')
+                    ->find($customer_id);
+
+                return $customer
+                    ? trim($customer->first_name . ' ' . $customer->last_name)
+                    : 'Unknown Customer';
+            }
+
+            return 'Unknown Customer';
+        }
+
+        return Auth::check() ? Auth::user()->name : 'Admin';
     }
 }
