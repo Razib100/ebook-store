@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Arr;
+use Illuminate\Http\Request;
 use App\Models\Author;
 use App\Models\Category;
 use App\Models\Product;
@@ -12,6 +14,7 @@ use App\Models\Purchase;
 use App\Models\Review;
 use App\Models\Customer;
 use App\Helpers\Various;
+
 
 class CustomerDashboardController extends Controller
 {
@@ -40,7 +43,8 @@ class CustomerDashboardController extends Controller
             ->get();
         return view('frontend.customer.dashboard', compact('customer', 'categories', 'products'));
     }
-    public function customerPanel(){
+    public function customerPanel()
+    {
         $customerId = Auth::guard('customer')->id();
         $categories = Category::where('status', 1)->get();
         $customer = Auth::guard('customer')->user();
@@ -61,10 +65,10 @@ class CustomerDashboardController extends Controller
                 'authors.name as author_name',
                 'payments.status as payment_status'
             );
-            $products->get();
-            $total_books = $products->count();
-            
-        return view('customer.dashboard', compact('customer', 'categories', 'products','total_books'));
+        $products->get();
+        $total_books = $products->count();
+
+        return view('customer.dashboard', compact('customer', 'categories', 'products', 'total_books'));
     }
     public function store(Request $request, $productId)
     {
@@ -152,7 +156,7 @@ class CustomerDashboardController extends Controller
                 'status'       => 1,
             ]);
         }
-        
+
         $request->validate([
             'title' => 'required|string|max:255',
             'category_id' => 'exists:categories,id',
@@ -264,7 +268,7 @@ class CustomerDashboardController extends Controller
             'short_description.max' => 'Short description cannot exceed 500 characters.',
             'cover_image.required_without' => 'Cover image is required if no previous image exists.',
         ]);
-        
+
 
         $product->title = $request->title;
         $product->author_id = $existingAuthor->id;
@@ -381,5 +385,53 @@ class CustomerDashboardController extends Controller
         $product->delete();
 
         return redirect()->route('customer.book')->with('success', 'Product deleted successfully!');
+    }
+
+    public function showProfile()
+    {
+        $customer = Customer::where('id', Auth::guard('customer')->id())->first();
+        return view('customer.profile', compact('customer'));
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $customer = Customer::where('id', Auth::guard('customer')->id())->first();
+
+        $validated = $request->validate([
+            'first_name'    => 'required|string|max:255',
+            'last_name'     => 'nullable|string|max:255',
+            'gender'        => 'nullable|in:male,female,other',
+            'date_of_birth' => 'nullable|date',
+            'email'         => 'required|email|unique:customers,email,' . $customer->id,
+            'phone'         => 'nullable|string|max:20',
+            'image'         => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'new_password'  => 'nullable|min:6|confirmed', // requires new_password_confirmation field
+        ]);
+
+        // 🖼 Handle image upload
+        if ($request->hasFile('image')) {
+            $imagePath = 'uploads/customers/';
+            $file = $request->file('image');
+            $fileName = time() . '_' . preg_replace('/\s+/', '_', $file->getClientOriginalName());
+            $file->move(public_path($imagePath), $fileName);
+            $validated['image'] = $imagePath . $fileName;
+
+            // delete old image if exists
+            if ($customer->image && file_exists(public_path($customer->image))) {
+                @unlink(public_path($customer->image));
+            }
+        }
+
+        // ✅ Password update logic (no current password check)
+        if ($request->filled('new_password')) {
+            $validated['password'] = Hash::make($request->new_password);
+        } else {
+            unset($validated['password']);
+        }
+
+        // Update customer record
+        $customer->update($validated);
+
+        return back()->with('success', 'Profile updated successfully!');
     }
 }

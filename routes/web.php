@@ -51,6 +51,9 @@ Route::prefix('customer')->name('customer.')->group(function () {
     Route::middleware('auth:customer')->group(function () {
         Route::get('/dashboard', [CustomerDashboardController::class, 'index'])->name('dashboard');
         Route::get('/panel', [CustomerDashboardController::class, 'customerPanel'])->name('panel');
+
+        Route::get('/profile', [CustomerDashboardController::class, 'showProfile'])->name('profile');
+        Route::post('/profile/update', [CustomerDashboardController::class, 'updateProfile'])->name('profile.update');
         // Product
         Route::get('/book', [CustomerDashboardController::class, 'product'])->name('book');
         Route::get('/book/add/{id?}', [CustomerDashboardController::class, 'productAdd'])->name('book.add');
@@ -118,6 +121,8 @@ Route::middleware('auth')->group(function () {
     
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/profile/password', [ProfileController::class, 'updatePassword'])
+    ->name('password.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
