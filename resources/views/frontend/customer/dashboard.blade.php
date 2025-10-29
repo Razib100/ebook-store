@@ -3,7 +3,7 @@
 @section('content')
 <div class="vs-cart-wrapper space-top space-extra-bottom">
     <div class="container">
-    <a href="{{ route('customer.panel') }}" class="vs-btn mb-2" style=" float:right !important">Upload Book</a>
+    <a href="{{ route('customer.book') }}" class="vs-btn mb-2" style=" float:right !important">Upload Book</a>
         @if($products->count() > 0)
         <table class="cart_table">
             <thead>

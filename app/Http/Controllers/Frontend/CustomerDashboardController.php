@@ -60,10 +60,11 @@ class CustomerDashboardController extends Controller
                 'products.*',
                 'authors.name as author_name',
                 'payments.status as payment_status'
-            )
-            ->get();
+            );
+            $products->get();
+            $total_books = $products->count();
             
-        return view('customer.dashboard', compact('customer', 'categories', 'products'));
+        return view('customer.dashboard', compact('customer', 'categories', 'products','total_books'));
     }
     public function store(Request $request, $productId)
     {
