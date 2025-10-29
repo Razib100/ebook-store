@@ -68,14 +68,14 @@ class CustomerDashboardController extends Controller
     }
     public function store(Request $request, $productId)
     {
-        $request->validate([
-            'review' => 'required|string|max:1000',
-        ]);
+        // $request->validate([
+        //     'review' => 'required|string|max:1000',
+        // ]);
 
         Review::create([
             'customer_id' => Auth::guard('customer')->id(),
             'product_id' => $productId,
-            'comment' => $request->review,
+            'comment' => $request->review ?? null,
             'rating' => $request->rating,
             'status' => 0
         ]);

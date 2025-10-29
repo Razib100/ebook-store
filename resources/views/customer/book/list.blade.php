@@ -54,7 +54,7 @@
         <table id="example1" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>Creation Date</th>
                     <th>Title</th>
                     <th>Category</th>
                     <th>Price</th>
@@ -67,7 +67,7 @@
             <tbody>
                 @foreach($products as $product)
                 <tr>
-                    <td>{{ $product->id }}</td>
+                    <td>{{ $product->created_at }}</td>
                     <td>{{ $product->title }}</td>
                     <td>{{ $product->category ? $product->category->name : '-' }}</td>
                     <td>{{ number_format($product->price, 2) }}</td>
@@ -117,7 +117,7 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <th>ID</th>
+                    <th>Creation Date</th>
                     <th>Title</th>
                     <th>Category</th>
                     <th>Price</th>
@@ -154,6 +154,7 @@
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
+            "order": [[0, "desc"]],
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({

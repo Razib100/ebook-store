@@ -166,12 +166,12 @@
                                                         <i class="fas fa-star" style="color: {{ $i <= $review->rating ? '#ffc107' : '#e4e5e9' }};"></i>
                                                         @endfor
                                                 </div>
-                                                <h4 class="name h4 mb-0">{{ $review->customer->last_name ?? 'Anonymous' }}</h4>
+                                                <h4 class="name h4 mb-0">{{ $review->customer->first_name . ' ' . $review->customer->last_name ?? 'Anonymous' }}</h4>
                                             </div>
 
-                                            <p class="text mb-2">{{ $review->comment }}</p>
+                                            <!-- <p class="text mb-2">{{ $review->comment }}</p> -->
 
-                                            <span class="commented-on text-muted mt-1">
+                                            <span class="commented-on text-muted mt-3">
                                                 Published {{ $review->created_at->diffForHumans() }}
                                             </span>
                                         </div>
@@ -205,7 +205,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-12 form-group">
-                                            <textarea name="review" class="form-control" placeholder="Write your review..." required></textarea>
+                                            <!-- <textarea name="review" class="form-control" placeholder="Write your review..." required></textarea> -->
                                         </div>
                                         <div class="col-12 form-group mb-0">
                                             <button type="submit" class="vs-btn" {{ $isReview ? 'disabled' : '' }}>

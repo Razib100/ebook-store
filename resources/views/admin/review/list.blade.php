@@ -47,9 +47,9 @@
                     <tr>
                         <td>{{ $review->id }}</td>
                         <td>{{ $review->created_at->format('d M, Y') }}</td>
-                        <td>{{ $review->customer->last_name ?? 'Anonymous' }}</td>
-                        <<td>{{ Str::limit($review->product->title ?? 'Unknown Product',30) }}</td>
-                        <td>{{ Str::limit($review->comment, 100) }}</td>
+                        <td>{{ $review->customer ? trim($review->customer->first_name . ' ' . $review->customer->last_name) : 'Anonymous' }}</td>
+                        <td>{{ Str::limit($review->product->title ?? 'Unknown Product',30) }}</td>
+                        <td>{{ Str::limit($review->comment, 100) ?? 'No Comment' }}</td>
                         <td>
                             @for ($i = 1; $i <= 5; $i++)
                                 <i class="fas fa-star" style="color: {{ $i <= $review->rating ? '#ffc107' : '#e4e5e9' }}"></i>
@@ -119,6 +119,7 @@
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
+            "order": [[0, "desc"]],
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
