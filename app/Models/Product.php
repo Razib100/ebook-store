@@ -28,7 +28,10 @@ class Product extends Model
         'home_visible',
         'is_trending',
         'status',
-        'created_by'
+        'created_by',
+        'no_of_words',
+        'no_of_chapters',
+        'no_of_images'
     ];
 
     /**

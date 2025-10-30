@@ -76,9 +76,9 @@ class ProductController extends Controller
             'description' => 'required|string',
             'cover_image' => 'required|image|max:2048',
             'gallery_images.*' => 'nullable|image|max:2048',
-            // 'pdf_file' => 'nullable|mimes:pdf',
-            // 'epub_file' => 'nullable|mimes:epub',
-            // 'mobi_file' => 'nullable|mimes:mobi',
+            'no_of_words' => 'required|numeric',
+            'no_of_chapters' => 'required|numeric',
+            'no_of_images' => 'required|numeric',
             'pdf_file' => 'nullable|mimes:pdf|required_without_all:epub_file,mobi_file',
             'epub_file' => 'nullable|mimes:epub|required_without_all:pdf_file,mobi_file',
             'mobi_file' => 'nullable|mimes:mobi|required_without_all:pdf_file,epub_file',
@@ -112,6 +112,9 @@ class ProductController extends Controller
             $product->category_id = $request->category_id;
             $product->price = $request->price;
             $product->percentage = $request->percentage;
+            $product->no_of_words = $request->no_of_words;
+            $product->no_of_chapters = $request->no_of_chapters;
+            $product->no_of_images = $request->no_of_images;
             $product->short_description = $request->short_description;
             $product->description = $request->description;
             $product->tags = $request->tags ? explode(',', $request->tags) : [];
@@ -184,6 +187,9 @@ class ProductController extends Controller
             'category_id' => 'exists:categories,id',
             'price' => 'required|numeric',
             'percentage' => 'nullable|numeric',
+            'no_of_words' => 'required|numeric',
+            'no_of_chapters' => 'required|numeric',
+            'no_of_images' => 'required|numeric',
             'short_description' => 'required|string|max:500',
             'description' => 'required|string',
             'cover_image' => 'required|image|max:2048',
@@ -202,6 +208,9 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
         $product->price = $request->price;
         $product->percentage = $request->percentage;
+        $product->no_of_words = $request->no_of_words;
+        $product->no_of_chapters = $request->no_of_chapters;
+        $product->no_of_images = $request->no_of_images;
         $product->short_description = $request->short_description;
         $product->description = $request->description;
         $product->tags = $request->tags ? explode(',', $request->tags) : [];

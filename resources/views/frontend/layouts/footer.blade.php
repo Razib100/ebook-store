@@ -1,42 +1,4 @@
 <footer class="footer-layout1 style2 z-index-common">
-    <!-- Cta Area -->
-    <div class="container">
-        <div class="cta-layout1 style2 z-index-common blog-title">
-            <div class="row gx-60 align-items-center">
-                <div class="col-lg-3">
-                    <div class="cta-logo">
-                        <a href="index.html">
-                            <img src="{{ asset('frontend/assets/img/logo.svg') }}" alt="Ebukz" class="logo">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-9">
-                    <div class="row justify-content-xl-between justify-content-center align-items-center">
-                        <div class="col-lg-5">
-                            <div class="newsletter-inner">
-                                <span class="newsletter-icon">
-                                    <img src="{{ asset('frontend/assets/img/icons/mail-2.svg') }}" alt="icon">
-                                </span>
-                                <div class="newsletter-content">
-                                    <h4 class="newsletter_title">Get In Touch</h4>
-                                    <p class="newsletter-text">Subscribe for more Update</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-7">
-                            <div class="newsletter-form">
-                                <div class="search-btn">
-                                    <input class="form-control" type="email" placeholder="Your Email Address">
-                                    <button type="submit" class="vs-btn"><i class="fa-solid fa-paper-plane"></i> Subscribe</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Cta Area End -->
     <div class="footer-top">
         <div class="container">
             <div class="row g-5 justify-content-between">

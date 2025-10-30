@@ -59,7 +59,7 @@
           </div>
           <div class="product-content">
             <div class="product-rating">
-              <span class="star"><i class="fas fa-star"></i> (5)</span>
+              <span class="star"><i class="fas fa-star"></i> ({{ \App\Helpers\Various::reviewCount($product->id) }})</span>
               <ul class="price-list">
                 @if(!empty($product->percentage) && $product->percentage > 0)
                 @php
@@ -177,10 +177,25 @@
           </div>
 
           <div class="product-content">
+            @php
+            $avgRating = \App\Helpers\Various::averageRating($product->id) ?? 0;
+            $reviewCount = \App\Helpers\Various::reviewCount($product->id);
+            @endphp
+
             <div class="star-rating">
-              @for($i = 0; $i < 5; $i++)
-                <i class="fa-solid fa-star"></i>
-                @endfor
+              @for($i = 1; $i <= 5; $i++)
+                @if($avgRating>= $i)
+                {{-- full star --}}
+                <i class="fa-solid fa-star text-warning"></i>
+                @elseif($avgRating > ($i - 1) && $avgRating < $i)
+                  {{-- half star --}}
+                  <i class="fa-solid fa-star-half-stroke text-warning"></i>
+                  @else
+                  {{-- empty star --}}
+                  <i class="fa-regular fa-star text-warning"></i>
+                  @endif
+                  @endfor
+                  <span class="rating-count ms-1">({{ $reviewCount }})</span>
             </div>
 
             <span class="product-author">
@@ -320,7 +335,7 @@
 
           <div class="product-content">
             <div class="product-rating">
-              <span class="star"><i class="fas fa-star"></i> ({{ $product->rating ?? '4.5' }})</span>
+              <span class="star"><i class="fas fa-star"></i> ({{ \App\Helpers\Various::reviewCount($product->id) }})</span>
               <ul class="price-list">
                 @if(!empty($product->percentage) && $product->percentage > 0)
                 @php
@@ -385,7 +400,7 @@
           </div>
           <div class="product-content">
             <div class="product-rating">
-              <span class="star"><i class="fas fa-star"></i> ({{ number_format($product->rating ?? 4.5, 1) }})</span>
+              <span class="star"><i class="fas fa-star"></i> ({{ \App\Helpers\Various::reviewCount($product->id) }})</span>
               <ul class="price-list">
                 @if(!empty($product->percentage) && $product->percentage > 0)
                 @php

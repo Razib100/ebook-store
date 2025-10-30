@@ -78,7 +78,7 @@
                     </div>
                     <div class="product-content">
                         <div class="product-rating">
-                            <span class="star"><i class="fas fa-star"></i> ({{ $product->rating ?? '4.5' }})</span>
+                            <span class="star"><i class="fas fa-star"></i> ({{ \App\Helpers\Various::reviewCount($product->id) }})</span>
                             <ul class="price-list">
                                 @if($product->percentage && $product->percentage > 0)
                                 <li><del>${{ number_format($product->price, 2) }}</del></li>

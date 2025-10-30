@@ -146,6 +146,40 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Number Of Words: <span class="text-danger">*</span></label>
+                        <input type="text" name="no_of_words" class="form-control" placeholder="Enter no of words"
+                            value="{{ old('no_of_words', $product->no_of_words ?? '') }}">
+                        @error('no_of_words')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Number Of Chapters: <span class="text-danger">*</span></label>
+                        <input type="text" name="no_of_chapters" class="form-control" placeholder="Enter no of chapters"
+                            value="{{ old('no_of_chapters', $product->no_of_chapters ?? '') }}">
+                        @error('no_of_chapters')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Number Of Images: <span class="text-danger">*</span></label>
+                        <input type="text" name="no_of_images" class="form-control" placeholder="Enter no of images"
+                            value="{{ old('no_of_images', $product->no_of_images ?? '') }}">
+                        @error('no_of_images')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
@@ -176,7 +210,7 @@
             </div>
 
             <!-- Gallery Upload -->
-            <div class="row mt-3">
+            <!-- <div class="row mt-3">
                 <div class="col-md-12">
                     <label>Product Gallery (Multiple Images)</label>
                     <div id="galleryUpload" class="border border-secondary rounded p-3 text-center"
@@ -185,7 +219,6 @@
                         <input type="file" name="gallery_images[]" id="galleryInput" multiple accept="image/*" hidden>
                     </div>
 
-                    <!-- Preview Container -->
                     <div id="galleryPreview" class="d-flex flex-wrap mt-3">
                         @if(isset($galleryImages) && is_array($galleryImages))
                         @foreach($galleryImages as $image)
@@ -198,12 +231,11 @@
                         @endif
                     </div>
 
-
                     @error('gallery_images')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
-            </div>
+            </div> -->
             <div class="form-group">
                 <label>Tags:</label>
                 <input type="text" name="tags" id="tags" class="form-control"

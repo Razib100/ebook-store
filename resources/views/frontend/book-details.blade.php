@@ -124,6 +124,15 @@
                         <span>
                             <p>Tags:</p> {{ implode(', ', $product->tags ?? []) }}
                         </span>
+                        <span class="posted_in">
+                            <p>Number Of Words: </p>{{ $product->no_of_words }}
+                        </span>
+                        <span class="posted_in">
+                            <p>Number Of Images: </p>&nbsp;{{ $product->no_of_images }}
+                        </span>
+                        <span class="posted_in">
+                            <p>Number Of Chapters: </p>&nbsp;{{ $product->no_of_chapters }}
+                        </span>
                     </div>
                 </div>
             </div>

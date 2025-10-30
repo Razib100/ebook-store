@@ -112,4 +112,8 @@ class Various
 
         return Auth::check() ? Auth::user()->name : 'Admin';
     }
+    public static function averageRating($productId)
+    {
+        return \App\Models\Review::where('product_id', $productId)->avg('rating');
+    }
 }
