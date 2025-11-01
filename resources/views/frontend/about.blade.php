@@ -10,7 +10,7 @@
       <h1 class="breadcumb-title">About Us</h1>
       <div class="breadcumb-menu-wrap">
         <div class="breadcumb-menu">
-          <span><a href="index.html">Home</a></span>
+          <span><a href="/">Home</a></span>
           <span>About Us</span>
         </div>
       </div>

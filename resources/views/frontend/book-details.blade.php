@@ -150,7 +150,7 @@
             </div>
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                    <div class="description">
+                    <div class="description" id='product-description'>
                         <p class="text">{!! $product->description !!}</p>
                     </div>
                 </div>

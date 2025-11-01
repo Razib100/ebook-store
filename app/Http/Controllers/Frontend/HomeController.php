@@ -257,4 +257,9 @@ class HomeController extends Controller
 
         return back()->with('success', 'Your message has been sent successfully.');
     }
+
+    public function termsCondition(){
+        $categories = Category::where('status', 1)->get();
+        return view('frontend.terms-condition', compact('categories'));
+    }
 }

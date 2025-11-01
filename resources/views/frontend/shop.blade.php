@@ -10,7 +10,7 @@
             <h1 class="breadcumb-title">Shop</h1>
             <div class="breadcumb-menu-wrap">
                 <div class="breadcumb-menu">
-                    <span><a href="index.html">Home</a></span>
+                    <span><a href="/">Home</a></span>
                     <span>Shop</span>
                 </div>
             </div>

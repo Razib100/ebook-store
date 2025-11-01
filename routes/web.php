@@ -40,6 +40,7 @@ Route::get('/search', [HomeController::class, 'search'])->name('search');
 Route::get('/book/category/{id}', [HomeController::class, 'bookByCategory'])->name('book.byCategory');
 Route::get('/book-details/{id}', [HomeController::class, 'bookById'])->name('book.byId');
 Route::post('/product/{id}/review', [CustomerDashboardController::class, 'store'])->name('review.store');
+Route::get('/terms-condition', [HomeController::class, 'termsCondition'])->name('terms-condition');
 
 Route::prefix('customer')->name('customer.')->group(function () {
     Route::get('/login', [CustomerAuthController::class, 'showLoginForm'])->name('login');

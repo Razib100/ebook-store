@@ -49,3 +49,6 @@
     transition: all 0.5s ease;
     padding: 10px 10px;
 }
+#terms-condition p, #product-description p {
+  color: var(--title-color) !important;
+}
