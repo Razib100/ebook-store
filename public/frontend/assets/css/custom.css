@@ -52,3 +52,7 @@
 #terms-condition p, #product-description p {
   color: var(--title-color) !important;
 }
+a img {
+  cursor: pointer;
+}
+

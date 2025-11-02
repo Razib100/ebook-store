@@ -122,7 +122,7 @@ class HomeController extends Controller
             ->orderBy('id', 'desc')
             ->paginate(9);
 
-        return view('frontend.shop', compact('products', 'category','categories'));
+        return view('frontend.shop', compact('products', 'category', 'categories'));
     }
     public function search(Request $request)
     {
@@ -133,25 +133,68 @@ class HomeController extends Controller
             $query->where('category_id', $request->category_id);
         }
 
-        // Filter by product name
-        /*if ($request->search) {
-            $query->where('title', 'like', '%' . $request->search . '%');
-        }*/
-        // Filter by author name
+        // Filter by author name search
         if ($request->search) {
             $query->whereHas('author', function ($q) use ($request) {
                 $q->where('name', 'like', '%' . $request->search . '%');
             });
         }
 
+        // Filter by author ID
         if ($request->author_id) {
             $query->where('author_id', $request->author_id);
         }
 
-        $products = $query->orderBy('id', 'desc')->paginate(12);
+        // Filter by minimum price
+        if ($request->price_min !== null) {
+            $query->where('price', '>=', $request->price_min);
+        }
+
+        // Filter by maximum price
+        if ($request->price_max !== null) {
+            $query->where('price', '<=', $request->price_max);
+        }
+
+        // Filter by minimum rating
+        if ($request->rating_min) {
+            $query->whereHas('reviews', function ($q) use ($request) {
+                $q->havingRaw('rating = ?', [$request->rating_min]);
+            });
+        }
+
+        // Filter by formats
+        if ($request->formats && is_array($request->formats)) {
+            $query->where(function ($q) use ($request) {
+                foreach ($request->formats as $format) {
+                    $q->orWhereNotNull($format . '_file');  // Assuming your product table has 'pdf_file', 'epub_file', 'mobi_file' columns
+                }
+            });
+        }
+
+        // Sort order
+        switch ($request->orderby) {
+            case 'asc':
+                $query->orderBy('id', 'asc');
+                break;
+            case 'price-low-to-high':
+                $query->orderBy('price', 'asc');
+                break;
+            case 'price-high-to-low':
+                $query->orderBy('price', 'desc');
+                break;
+            case 'desc':
+            default:
+                $query->orderBy('id', 'desc');
+                break;
+        }
+
+        $products = $query->paginate(12)->appends($request->except('page')); // append filters to pagination links
+
         $categories = Category::where('status', 1)->get();
+
         return view('frontend.shop', compact('products', 'categories'));
     }
+
     public function bookById($id)
     {
         $categories = Category::where('status', 1)->get();
@@ -258,7 +301,8 @@ class HomeController extends Controller
         return back()->with('success', 'Your message has been sent successfully.');
     }
 
-    public function termsCondition(){
+    public function termsCondition()
+    {
         $categories = Category::where('status', 1)->get();
         return view('frontend.terms-condition', compact('categories'));
     }

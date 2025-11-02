@@ -105,7 +105,7 @@
             </div>
             <h2 class="offer-title">{{ $author->name }}</h2>
             <p class="offer-price">
-              Only From
+              Start From
               <span>
                 $11
               </span>
