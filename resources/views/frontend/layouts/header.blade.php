@@ -97,7 +97,13 @@
 
                         <div class="header-buttons">
                             <div class="dropdown">
-                                <a href="wishlist.html" class="vs-icon wishlist" class="dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user"></i></a>
+                                <a href="wishlist.html" class="vs-icon wishlist" class="dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    @auth('customer')
+                                    <i class="fas fa-sign-out"></i>
+                                    @else
+                                    <i class="fa-solid fa-user"></i>
+                                    @endauth
+                                </a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                     @auth('customer')
                                     <li><a class="dropdown-item" href="{{ route('customer.dashboard') }}">Dashboard</a></li>

@@ -81,7 +81,17 @@ class ProductController extends Controller
             'no_of_images' => 'required|numeric',
             'pdf_file' => 'nullable|mimes:pdf|required_without_all:epub_file,mobi_file',
             'epub_file' => 'nullable|mimes:epub|required_without_all:pdf_file,mobi_file',
-            'mobi_file' => 'nullable|mimes:mobi|required_without_all:pdf_file,epub_file',
+            //'mobi_file' => 'nullable|mimes:mobi|required_without_all:pdf_file,epub_file',
+            'mobi_file' => [
+                'nullable',
+                'file',
+                'required_without_all:pdf_file,epub_file',
+                function ($attribute, $value, $fail) {
+                    if ($value && strtolower($value->getClientOriginalExtension()) !== 'mobi') {
+                        $fail('The MOBI file must have a .mobi extension.');
+                    }
+                },
+            ],
             'status' => 'required|in:0,1',
         ], [
             'short_description.max' => 'Short description cannot exceed 500 characters.',

@@ -42,7 +42,7 @@ return new class extends Migration
             // Metadata
             $table->string('tags', 191)->nullable();
             $table->unsignedInteger('download_count')->default(0);
-            $table->unsignedTinyInteger('percentage')->default(0); // discount percentage
+            $table->decimal('percentage', 8, 2)->nullable()->default(null);
             $table->date('date')->nullable();
         
             // Flags

@@ -74,7 +74,10 @@
                         <span class="product-rating__total">Reviews ({{ \App\Helpers\Various::reviewCount($product->id) }})</span>
                     </div>
                     <h2 class="product-title">{{ $product->title }}</h2>
-                    <span class="product-author"><strong>By:</strong> {{ $product->author->name ?? 'Unknown Author' }}</span>
+                    <span class="product-author">
+                        <strong>By: </strong> {{ $product->author->name ?? 'Unknown Author' }}<br>
+                        <strong>Sales: </strong> {{ \App\Helpers\Various::salesCount($product->id) }}
+                    </span>
                     <p class="product-price">
 
                         @if(!empty($product->percentage) && $product->percentage > 0)
@@ -297,7 +300,10 @@
                                 @endif
                             </ul>
                         </div>
-                        <span class="product-author"><strong>By:</strong> {{ $product->author_name ?? $product->author->name ?? '' }}</span>
+                        <span class="product-author">
+                            <strong>By:</strong> {{ $product->author_name ?? $product->author->name ?? '' }}<br>
+                            <strong>Sales:</strong> {{ \App\Helpers\Various::salesCount($product->id) }}
+                        </span>
                         <h2 class="product-title">
                             <a href="{{ route('book.byId', $product->id) }}">{{ $product->title }}</a>
                         </h2>

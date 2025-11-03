@@ -116,4 +116,8 @@ class Various
     {
         return \App\Models\Review::where('product_id', $productId)->avg('rating');
     }
+    public static function salesCount($productId)
+    {
+        return Purchase::where('product_id', $productId)->count();
+    }
 }

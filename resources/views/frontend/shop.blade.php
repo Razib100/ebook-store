@@ -138,7 +138,10 @@
                                         @endif
                                     </ul>
                                 </div>
-                                <span class="product-author"><strong>By:</strong> {{ $product->author_name ?? $product->author->name ?? '' }}</span>
+                                <span class="product-author">
+                                    <strong>By:</strong> {{ $product->author_name ?? $product->author->name ?? '' }}<br>
+                                    <strong>Sales:</strong> {{ \App\Helpers\Various::salesCount($product->id) }}
+                                </span>
                                 <h2 class="product-title">
                                     <a href="{{ route('book.byId', $product->id) }}">{{ $product->title }}</a>
                                 </h2>
